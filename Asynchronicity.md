@@ -36,9 +36,19 @@ Given that JavaScript is used in web browsers, that typically need to be able to
 Here's a video illustration of these principles: 
 [video here]
 
+### Asynchronous code and execution order: 
+
+As seen above, asynchronous operations can have a significant impact on how our programmes runs - what if, for example, I need to somehow "wait" for some data from an external server in order to perform a particular operation, such as, for instance, printing it to the console? What happens if asynchronous code is mixed in with synchronous code that executes in the typical way, from top to bottom? Let's examine a few different scenarios to answer these questions. 
+
+The first rule that we will see is that, when synchronous code and asynchronous code are mixed together, **there will be no "pausing and waiting" for asynchronous code to finish running before the rest of the synchronous code executes**. 
+Instead, the programme will run as usual, executing from top to bottom, "register" the asynchronous operations, but move on to the next synchronous block. The asynchronous code will finish executing only after all of the synchronous operations have ran.
+
+![asynchronous/synchronous execution diagram](image.png)
+
+
 ### Enter Promises:
 
-Promises are a feature of JavaScript that we use to handle this asynchronicity problem and regain control over the execution flow of our programme. 
+Promises are a feature of JavaScript that we use to handle this asynchronicity problem and regain control over the execution flow of our programme. Promises let you control the order in which operations will run in your code, and only 
 
 
 
