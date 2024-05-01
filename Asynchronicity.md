@@ -47,7 +47,6 @@ Instead, the programme will run as usual, executing from top to bottom, "registe
 
 Here is a video to show you how this principle in action, comparing synchronous and asynchronous code executing: 
 
-
 [video needs to go here]
 
 ### One step further: 
@@ -61,3 +60,5 @@ To summarise the above, here is a schema of the difference between synchronous a
 If you want to go one step further and understand what's happening to the asynchronous operations when the programme seemingly "skips" ahead and executes the rest of the code, you can watch this video for a great concise explanation of how JavaScript handles this in the background: 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/lqLSNG_79lI?si=uDdGAS9UL4Ih0cnS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+

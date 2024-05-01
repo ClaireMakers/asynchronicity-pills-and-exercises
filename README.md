@@ -2,7 +2,9 @@ Thinking about:
 
 - Amending the pill about callbacks that would focus on them being functions passed as argument, rather than as ways to handle asynchronicity. Callbacks aren't just used in the context of asynchronous programming, and I've found that this has been an area of confusion for students. 
 
-- The addition of a pill about Asynchronicity that would cover how it works in JavaScript, as well as the basic syntax for promises.
+- The addition of a pill about Asynchronicity that would cover how it works in JavaScript. 
+
+- A pill for the basic syntax for promises, linking these to the challenges.
 
 - It would include video demonstrations of the concepts at hand: 
     - One video with an example of a web page sending many requests at once, and the influence of network speed on these to show that we're dealing with operations that take time to run. 
