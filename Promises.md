@@ -62,7 +62,6 @@ This Promise will be rejected with this error string.
 
 In both cases, you can see that the methods ```.then()``` and ```.catch()``` have been called on the promise object above them in the chain, following the syntax ```promise.then(() => {})``` or ```promise.catch(() => {})```. To break it down further, we can note a few things:
 
-<br>
 
 1. ```.then()``` and ```.catch()``` each take a callback function as their argument. 
 
@@ -71,6 +70,12 @@ In both cases, you can see that the methods ```.then()``` and ```.catch()``` hav
 1. We can perform an operation inside of that callback function. This operation will only run once the promise above in the chain has finished executed. 
 
 1. ```.then()``` handles situations where the promises was fulfilled (i.e. the asynchronous operation was successful), and ```.catch()``` situations where it was rejected. 
+
+<br>
+
+Here - need to give more examples, then show the schema, then add a video. 
+
+![alt text](image-3.png)
 
 
 ### Controlling the execution order of our code using promises: 
