@@ -25,7 +25,7 @@ The execution order of this programme would be as follows:
 
 If we had tried to call the function ```countSheep``` before it was declared, we would have ran into a bug due to the top to bottom execution order - as far as our programme is concerned, a variable only exists if it has been declared before being used. 
 
-This is typical behaviour, and an example of **synchronous code** - operations are executed one at a time, from top to bottom. 
+This is typical behaviour, and an example of **synchronous code** - operations are executed one at a time, from top to bottom. The next operation can only run once the one before has finished executing. 
 
 ### Asynchronous Code:
 
@@ -45,42 +45,19 @@ Instead, the programme will run as usual, executing from top to bottom, "registe
 
 ![asynchronous/synchronous execution diagram](image.png)
 
-
-### Enter Promises:
-
-Promises are a feature of JavaScript that we use to handle this asynchronicity problem and regain control over the execution flow of our programme. Promises let you control the order in which operations will run in your code, and only 
+Here is a video to show you how this principle in action, comparing synchronous and asynchronous code executing: 
 
 
+[video needs to go here]
 
+### One step further: 
 
+To summarise the above, here is a schema of the difference between synchronous and asynchronous execution in JavaScript.
 
-start with definition of key concepts 
+<br>
 
-- execution order
+![alt text](image-2.png)
 
-- single threaded 
+If you want to go one step further and understand what's happening to the asynchronous operations when the programme seemingly "skips" ahead and executes the rest of the code, you can watch this video for a great concise explanation of how JavaScript handles this in the background: 
 
-- control flow 
-
-Explain classic execution of JavaScript code, with some diagrams too
-Then, why that's a problem in the case of code that we don't know how long will take to execute - could have a short video there to illustrate just how many requests a website sends, and why we can't just sit around waiting for them all to complete. 
-
-Give examples of tasks that might take a while
-
-Enter Promises:
-
-Promises are the syntactic feature in JavaScript that allows us to manage asynchronicity and regain control of execution order of things. 
-
-Here, and explanation of what promises are, their basic syntax and 
-why it matters. 
-
-Could come with a video maybe? 
-
-Diagram of water/liquid flowing down to represent data going down the
-promises chain 
-
-Exercise: 
-- some exercises - predict what a certain value will be at a certain execution point quizz form with answers underneath, to deal with execution order. 
-
-That could then segway back into the rest of our curriculum and cahin onto the calling apis material 
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/lqLSNG_79lI?si=uDdGAS9UL4Ih0cnS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
