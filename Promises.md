@@ -139,17 +139,7 @@ This is useful in case something goes wrong when getting some data back from a s
 
 </details>
 
-
-### Controlling the execution order of our code using promises: 
-
-Now that we have established the basic syntax of promises, we will see some practical applications. 
-
-[Here's a video building on the example in the asynchronicity pill]
-
-
-
-
-
+[Here I need to record a video walkthrough of the above, will do that shortly]
 
 
 <br>
