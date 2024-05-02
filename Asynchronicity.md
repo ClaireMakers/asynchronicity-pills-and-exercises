@@ -53,7 +53,7 @@ Instead, the programme will run as usual, executing from top to bottom, "registe
 
 ![asynchronous/synchronous execution diagram](image.png)
 
-Here is a video to show you how this principle in action, comparing synchronous and asynchronous code executing: 
+Here is a video to show you how this principle works in action, comparing synchronous and asynchronous code executing. In this video, I will use something called Promises to showcase asynchronous behaviour in JavaScript, but don't worry about their syntax quite yet, as we'll go over them in the next bite.  
 
 [video needs to go here]
 
