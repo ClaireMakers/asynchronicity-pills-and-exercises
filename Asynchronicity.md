@@ -9,9 +9,9 @@ const countSheep = (sheepArray) => {
     return sheepArray.length;
 }
 
-const sheeps = ["Bramble", "Daffodil", "Buttercup"];
+const sheep = ["Bramble", "Daffodil", "Buttercup"];
 
-console.log(countSheep(sheeps));
+console.log(countSheep(sheep));
 ```
 
 The execution order of this programme would be as follows: 

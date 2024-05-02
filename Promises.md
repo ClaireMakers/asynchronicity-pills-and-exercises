@@ -2,7 +2,7 @@
 
 Promises are a feature of JavaScript that we use to handle this asynchronicity problem and regain control over the execution flow of our programme. Promises let you control the order in which some operations will run in your code - for example, if some of your code depends on data coming from an external server, using promises will let you run these operations once you have received the data.
 
-Promises are **objects in-built in JavaScript** - you can think of them as containers for future data, **a representation of the future completion or failure of an asynchronous operation**. As such, they have three different states: 
+Promises are **objects** - you can think of them as containers for future data, **a representation of the future completion or failure of an asynchronous operation**. As such, they have three different states: 
 
 1. **Fulfilled** - *the asynchronous operation completed successfully* - for instance, the data you requested from an external server has come back with no isses. 
 
@@ -67,15 +67,77 @@ In both cases, you can see that the methods ```.then()``` and ```.catch()``` hav
 
 1. The argument of that callback function is the value the promise in the chain above was either resolved or rejected with. 
 
-1. We can perform an operation inside of that callback function. This operation will only run once the promise above in the chain has finished executed. 
+1. We can perform an operation inside of that callback function. This operation will only run once the promise above in the chain has finished executing. 
 
 1. ```.then()``` handles situations where the promises was fulfilled (i.e. the asynchronous operation was successful), and ```.catch()``` situations where it was rejected. 
 
 <br>
 
-Here - need to give more examples, then show the schema, then add a video. 
+Here's another promise chain, to keep building on the example above: 
 
-![alt text](image-3.png)
+```
+const promiseToCountSheep = new Promise((resolve, reject) => {
+
+    const fulfilled = true;
+    const sheep = ["Bramble", "Daffodil", "Buttercup"];
+
+    if (fulfilled) {
+        resolve(sheep);
+    } else {
+        reject("Did not find any sheep!");
+    }
+
+}).then((sheepData) => {
+
+    return sheepData.length;
+
+}).then((sheepCount) => {
+
+    console.log(sheepCount);
+
+}).catch((errorStr) => {
+
+    console.log(errorStr);
+
+})
+
+```
+
+Reading the code above, spend a bit of time trying to guess how it works. Create a ```promisePlayground.js``` file and run it using the command ```node promisePlayground.js``` in your terminal.
+
+1. Will all the ```.then()``` and ```.catch()``` blocks run one after the other, or do you think maybe only some will? Why? 
+
+1. When fulfilled is set to ```true```, does the ```catch()``` method execute?
+
+1. Try to figure out how to get the ```catch()``` block to execute. 
+
+1. Can you guess what the .then() method returns exactly? 
+
+<br>
+<details>
+<summary> Answers </summary>
+
+### Fulfilled is set to true:
+
+If ```fulfilled``` is ```true```, and we have indeed received our data (*this is a bit of an artificial scenario, in real life examples the data would come from an API or a database*), then we can resolve the first promise in our chain with our array of sheep. Then, the second promise on our chain can perform an operation with that data. The code inside of this second promise will only ever run once the promise above it in the chain has resolved - this is very important, as for instance, if ```sheepData``` was undefined because an asynchronous database call hadn't completed, then my programme would throw an error such as *cannot read property .length of undefined*. Using the promise syntax here protects me from such issues. After that, the third promise on the chain prints the data on the console. 
+
+In the code above, a new feature of the ```.then()``` method also becomes apparent - **it not only deals with the data coming from the promise above in the chain, but also returns a new promise itself.** You can also see that the promises in the chain below the first one don't need to use the ```resolve ```function anymore, they can simply return data, and it will be passed down to the next promise in the chain. 
+
+
+### Fulfilled is set to false:
+
+If ```fulfilled``` had been set to ```false```, a different scenario would have played out. The ```reject``` function would have been called instead of the ```resolve``` one, and the programme would have skipped the ```.then()``` blocks entirely, calling instead the callback function inside of the ```.catch()``` block. 
+
+This is useful in case something goes wrong when getting some data back from a server or a database - the ```.then()``` blocks depend on the data being correct, and would throw errors if they ran. Instead, skipping ahead to teh ```catch()``` block will let you handle any errors as you please. In this case, we are just printing to the console what the error is, but in a real application, we could perform more complex operations, such as sending back http error statuses like 404 or 400. 
+
+<br>
+
+  ![alt text](image-5.png)
+</details>
+
+
+
+</details>
 
 
 ### Controlling the execution order of our code using promises: 
@@ -94,8 +156,6 @@ Now that we have established the basic syntax of promises, we will see some prac
 <br>
 <br>
 
-Diagram of water/liquid flowing down to represent data going down the
-promises chain 
 
 Exercise: 
 - some exercises - predict what a certain value will be at a certain execution point quizz form with answers underneath, to deal with execution order. 
