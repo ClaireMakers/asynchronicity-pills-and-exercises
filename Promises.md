@@ -71,6 +71,8 @@ In both cases, you can see that the methods ```.then()``` and ```.catch()``` hav
 
 1. ```.then()``` handles situations where the promises was fulfilled (i.e. the asynchronous operation was successful), and ```.catch()``` situations where it was rejected. 
 
+Here is a video run-through of the above[video here]
+
 <br>
 
 Here's another promise chain, to keep building on the example above: 
@@ -105,24 +107,33 @@ const promiseToCountSheep = new Promise((resolve, reject) => {
 
 Reading the code above, spend a bit of time trying to guess how it works. Create a ```promisePlayground.js``` file and run it using the command ```node promisePlayground.js``` in your terminal.
 
-1. Will all the ```.then()``` and ```.catch()``` blocks run one after the other, or do you think maybe only some will? Why? 
+1. Will all the ```.then()``` and ```.catch()``` blocks run one after the other, or will something else happen? Why? 
 
-1. When fulfilled is set to ```true```, does the ```catch()``` method execute?
-
-1. Try to figure out how to get the ```catch()``` block to execute. 
-
-1. Can you guess what the .then() method returns exactly? 
+1. What does the .then() method return exactly? 
 
 <br>
 <details>
-<summary> Answers </summary>
+<summary> Extra questions (don't open until you solved the ones above, they'd spoil the answers for you!) </summary>
+
+1. How would you get the ```.catch()``` block to run? Try to get it to execute in your playground file. 
+
+1. Change the second promise in the chain to return the first sheep in the array alongside a fresh promise. 
+
+</details>
+
+<br>
+<details>
+<summary> Answers and diagram </summary>
 
 ### Fulfilled is set to true:
 
-If ```fulfilled``` is ```true```, and we have indeed received our data (*this is a bit of an artificial scenario, in real life examples the data would come from an API or a database*), then we can resolve the first promise in our chain with our array of sheep. Then, the second promise on our chain can perform an operation with that data. The code inside of this second promise will only ever run once the promise above it in the chain has resolved - this is very important, as for instance, if ```sheepData``` was undefined because an asynchronous database call hadn't completed, then my programme would throw an error such as *cannot read property .length of undefined*. Using the promise syntax here protects me from such issues. After that, the third promise on the chain prints the data on the console. 
+If ```fulfilled``` is set to ```true```, then only the ```.then()``` blocks will execute. That's because the ```.catch()``` method only ever executes when a promise is rejected. When fulfilled is set to true, the first promise in the chain is **fulfilled** instead. Here, we have a bit of an artificial scenario, where I am fulfilling the first promise in the chain with a hard-coded array of sheep - in a real life examples the data might come from an API or a database. 
 
-In the code above, a new feature of the ```.then()``` method also becomes apparent - **it not only deals with the data coming from the promise above in the chain, but also returns a new promise itself.** You can also see that the promises in the chain below the first one don't need to use the ```resolve ```function anymore, they can simply return data, and it will be passed down to the next promise in the chain. 
+Then, the second promise on our chain can perform an operation with the sheep data. The code inside of this second promise will only ever run once the promise above it in the chain has resolved - this is very important, as for instance, if ```sheepData``` was undefined because an asynchronous database call hadn't completed, then my programme would throw an error such as *cannot read property .length of undefined*. Using the promise syntax here protects me from such issues. After that, the third promise on the chain prints the data on the console. 
 
+In the code above, a new feature of the ```.then()``` method also becomes apparent - **it not only deals with the data coming from the promise above in the chain, but also returns a new promise itself.** You can also see that the promises in the chain below the first one don't need to use the ```resolve```function anymore, they can simply return data, and it will be passed down to the next promise in the chain. 
+
+HERE ADD THE SOLUTION TO THE CHANGE IN PROMISE CHAIN
 
 ### Fulfilled is set to false:
 

@@ -37,7 +37,7 @@ Given that JavaScript is used in web browsers, that typically need to be able to
 
 For instance, when making calls to servers, **you cannot know how long it will take to get a response**, as that depends on a number of factors, including the speed of your internet. 
 
-Imagine what would happen if our browsers were only able to send one request at a time and had to wait for a response before moving on to the next one! For example, when loading the reddit homepage, there's about 266 operations executing to get all the data needed to render everything on the page - if these had to be run one by one by one, some slower than other, you can picture just how slow and frustrating loading any given page would be. JavaScript's single thread of execution would end up "blocked" by long-running operations, unable to go ahead and run the next one before the one prior finished executing.
+Imagine what would happen if our browsers were only able to send one request at a time and had to wait for a response before moving on to the next one! For example, when loading the reddit homepage, there's about 266 operations executing to get all the data needed to render everything on the page - if these had to be run one by one by one, some slower than other, you can picture just how slow and frustrating loading any given page would be. JavaScript's single thread of execution would end up "blocked" by long-running operations, unable to go ahead and run the next one before the one prior finished executing. For instance, if each of the 266 operations needed to load reddit's homepage all took about 4 seconds to run on a slow 3G network, it would take 1064 seconds, or about 18 minutes to load the page entirely! It wouldn't be quite so bad on a faster network, but still much slower than what we are used to. 
 
 Enter **asynchronous JavaScript** - asynchronous JavaScript seemingly lets you run more than one operation concurrently, dealing efficiently with these long-running tasks. 
 
@@ -46,14 +46,15 @@ Here's a video illustration of these principles:
 
 ### Asynchronous JavaScript: 
 
-As seen above, long-running operations can have a significant impact on how our programmes runs - what if, for example, I need to somehow "wait" for some data from an external server before I can perform a particular task, such as displaying data on a web page? What happens if asynchronous code is mixed in with synchronous code that executes in the typical way, from top to bottom? Let's examine a few different scenarios to answer these questions. 
+As seen above, long-running operations can have a significant impact on how our programmes runs - what if, for example, I need to somehow "wait" for some data from an external server before I can perform a particular task, such as displaying data on a web page? What happens if asynchronous code is mixed in with synchronous code that executes in the typical way, from top to bottom? We will be answering these questions in this pill and in the next, where we'll look into promises, which are the syntax used to write asynchronous code in JavaScript. 
 
-The first rule that we will see is that, when synchronous code and asynchronous code are mixed together, **there will be no "pausing and waiting" for asynchronous code to finish running before the rest of the synchronous code executes**. 
+For now, the first rule that we will see is that, when synchronous code and asynchronous code are mixed together, **there will be no "pausing and waiting" for asynchronous code to finish running before the rest of the synchronous code executes**. 
+
 Instead, the programme will run as usual, executing from top to bottom, "register" the asynchronous operations, but move on to the next synchronous block. The asynchronous code will finish executing only after all of the synchronous operations have run.
 
 ![asynchronous/synchronous execution diagram](image.png)
 
-Here is a video to show you how this principle works in action, comparing synchronous and asynchronous code executing. In this video, I will use something called Promises to showcase asynchronous behaviour in JavaScript, but don't worry about their syntax quite yet, as we'll go over them in the next bite.  
+Here is a video to show you how this principle works in action, comparing synchronous and asynchronous code executing. In this video, I will use the promise syntax to showcase asynchronous behaviour in JavaScript, but don't worry about being able to write them yourself quite yet, as we'll go over them in the next bite.  
 
 [video needs to go here]
 

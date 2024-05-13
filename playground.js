@@ -1,5 +1,6 @@
 const promiseToCountSheep = new Promise((resolve, reject) => {
   const fulfilled = false;
+  
   const sheep = ["Bramble", "Daffodil", "Buttercup"];
 
   if (fulfilled) {
