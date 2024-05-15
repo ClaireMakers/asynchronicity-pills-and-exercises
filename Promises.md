@@ -75,7 +75,13 @@ Here is a video run-through of the above[video here]
 
 <br>
 
-Here's another promise chain, to keep building on the example above: 
+### Complex promises chains: 
+
+<br>
+
+Here is another example of a promise chain, this time, slightly more complex than the one in the example above:
+
+
 
 ```
 const promiseToCountSheep = new Promise((resolve, reject) => {
@@ -105,6 +111,8 @@ const promiseToCountSheep = new Promise((resolve, reject) => {
 
 ```
 
+<br>
+
 Reading the code above, spend a bit of time trying to guess how it works. Create a ```promisePlayground.js``` file and run it using the command ```node promisePlayground.js``` in your terminal.
 
 1. Will all the ```.then()``` and ```.catch()``` blocks run one after the other, or will something else happen? Why? 
@@ -115,17 +123,21 @@ Reading the code above, spend a bit of time trying to guess how it works. Create
 <details>
 <summary> Extra questions (don't open until you solved the ones above, they'd spoil the answers for you!) </summary>
 
+<br>
+
 1. How would you get the ```.catch()``` block to run? Try to get it to execute in your playground file. 
 
-1. Change the second promise in the chain to return the first sheep in the array alongside a fresh promise. 
+1. Change the second promise in the chain to return the first sheep in the array alongside a fresh promise. Then, amend the next promise in the chain so that the names of the values available to you there reflect more adequately the data at hand. 
 
 </details>
 
 <br>
-<details>
-<summary> Answers and diagram </summary>
 
-### Fulfilled is set to true:
+
+<details>
+<summary> Answers & diagram summarising the example above </summary>
+
+### Fulfilled is set to true - answers to question 1 & 2: 
 
 If ```fulfilled``` is set to ```true```, then only the ```.then()``` blocks will execute. That's because the ```.catch()``` method only ever executes when a promise is rejected. When fulfilled is set to true, the first promise in the chain is **fulfilled** instead. Here, we have a bit of an artificial scenario, where I am fulfilling the first promise in the chain with a hard-coded array of sheep - in a real life examples the data might come from an API or a database. 
 
@@ -133,17 +145,51 @@ Then, the second promise on our chain can perform an operation with the sheep da
 
 In the code above, a new feature of the ```.then()``` method also becomes apparent - **it not only deals with the data coming from the promise above in the chain, but also returns a new promise itself.** You can also see that the promises in the chain below the first one don't need to use the ```resolve```function anymore, they can simply return data, and it will be passed down to the next promise in the chain. 
 
-HERE ADD THE SOLUTION TO THE CHANGE IN PROMISE CHAIN
+### Fulfilled is set to false - answer to extra question 1:
 
-### Fulfilled is set to false:
+In order to get the ```.catch()``` block to execute, you should have set fulfilled to false. If ```fulfilled``` had been set to ```false```, a different scenario would have played out than the one described in the paragraph above. The ```reject``` function would have been called instead of the ```resolve``` one, and the programme would have skipped the ```.then()``` blocks entirely, calling instead the callback function inside of the ```.catch()``` block. 
 
-If ```fulfilled``` had been set to ```false```, a different scenario would have played out. The ```reject``` function would have been called instead of the ```resolve``` one, and the programme would have skipped the ```.then()``` blocks entirely, calling instead the callback function inside of the ```.catch()``` block. 
+This is useful in case something goes wrong when getting some data back from a server or a database - the ```.then()``` blocks depend on the data being correct, and would throw errors if they ran. Instead, skipping ahead to the ```catch()``` block will let you handle any errors as you please. In this case, we are just printing to the console what the error is, but in a real application, we could perform more complex operations, such as sending back http error statuses like 404 or 400. 
 
-This is useful in case something goes wrong when getting some data back from a server or a database - the ```.then()``` blocks depend on the data being correct, and would throw errors if they ran. Instead, skipping ahead to teh ```catch()``` block will let you handle any errors as you please. In this case, we are just printing to the console what the error is, but in a real application, we could perform more complex operations, such as sending back http error statuses like 404 or 400. 
+
+### Answer to extra question 2:
+
+```
+const promiseToCountSheep = new Promise((resolve, reject) => {
+
+    const fulfilled = true;
+    const sheep = ["Bramble", "Daffodil", "Buttercup"];
+
+    if (fulfilled) {
+        resolve(sheep);
+    } else {
+        reject("Did not find any sheep!");
+    }
+
+}).then((sheepData) => {
+
+    return sheepData[0];
+
+}).then((sheepName) => {
+    // any naming around "sheep" works here :) 
+    console.log(sheepName);
+
+}).catch((errorStr) => {
+
+    console.log(errorStr);
+
+})
+
+```
+
+<br>
+
+This diagram summarises how the promise chain above executes in both scenarios: 
 
 <br>
 
   ![alt text](image-5.png)
+
 </details>
 
 
@@ -153,14 +199,122 @@ This is useful in case something goes wrong when getting some data back from a s
 [Here I need to record a video walkthrough of the above, will do that shortly]
 
 
+//HERE - SOMETHING ABOUT HOW YOU'LL rarely write promises from scratch with the constructor, but might encounter them in the context of API calls, and fetch -> That will link to the next pill
+
+### Challenges: 
+
 <br>
+
+**EXERCISE 1:**
+
+```
+
+const promiseToGatherFruit = new Promise((resolve, reject) => {
+
+    const fruit = "Pineapple";
+
+    resolve(fruit);
+
+}).then((fruit) => {
+    
+    console.log(fruit);
+
+});
+
+```
+
 <br>
+
+1. Write some code to get the second promise in the chain to return a new promise that resolves with the length of the fruit string instead of simply logging the fruit string. Then, get this third promise to log the fruit string length to the terminal. 
+
 <br>
 
 
-Exercise: 
-- some exercises - predict what a certain value will be at a certain execution point quizz form with answers underneath, to deal with execution order. 
+**EXERCISE 2:**
 
-That could then segway back into the rest of our curriculum and cahin onto the calling apis material 
+```
 
-An exercise - fix the promise chain - make it so something executes in the right sequence
+const fruitArray = [];
+
+const promiseToGatherFruit = new Promise((resolve, reject) => {
+
+    const fruit = "Pineapple";
+
+    resolve(fruit);
+
+}).then((fruit) => {
+
+    fruitArray.push(fruit);
+
+});
+
+console.log(fruitArray);
+
+```
+
+<br>
+
+1. Predict what the output of the ```console.log(fruitArray)``` will be. Write a couple of sentences to explain your logic. 
+
+<br>
+
+**EXERCISE 3:**
+
+```
+
+const chopApples = () => {
+    console.log("step 1 - chop apples and put them in a dish");
+}
+
+const mixCrumble = () => {
+    console.log("step 2 - mix butter, sugar and flour until crumbly, spread over the apples")
+}
+
+const bakeCrumble = () => {
+    return new Promise((resolve, reject) => {
+        const burnt = false;
+
+        if( burnt ) {
+            reject("error - Oh no, burnt crumble!");
+        } else {
+            resolve("step 3 - Perfect golden crumble!");
+        }
+
+    }).then(( bakedCrumble ) => {
+
+        console.log(bakedCrumble);
+
+    }).catch(( burntCrumbleErr ) => {
+
+        console.log(burntCrumbleErr);
+
+    });
+}
+
+const enjoyCrumble = () => {
+    console.log("step 4 - Delicious crumble - even better with custard!")
+}
+
+const makeCrumble = () => {
+    chopApples();
+    mixCrumble();
+    bakeCrumble();
+    enjoyCrumble();
+}
+
+
+---------------------
+CURRENT OUTPUT:
+step 1 - chop apples and put them in a dish
+step 2 - mix butter, sugar and flour until crumbly, spread over the apples
+step 4 - Delicious crumble - even better with custard!
+step 3 - Perfect golden crumble!
+
+```
+
+<br>
+
+1. Why is the output on the console in the wrong order? Why does step 4 currently happen before step 3? 
+
+1. Fix the code above so that step 3 and step 4 are in the right order. 
+
