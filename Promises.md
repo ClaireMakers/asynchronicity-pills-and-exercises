@@ -201,6 +201,8 @@ This diagram summarises how the promise chain above executes in both scenarios:
 
 //HERE - SOMETHING ABOUT HOW YOU'LL rarely write promises from scratch with the constructor, but might encounter them in the context of API calls, and fetch -> That will link to the next pill
 
+<br>
+
 ### Challenges: 
 
 <br>
